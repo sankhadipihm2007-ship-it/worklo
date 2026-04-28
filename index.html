@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Worklo | Smart Office Space Discovery & Workspace Benefits</title>
+    <meta content="Worklo helps companies find the right office space across India while unlocking workspace benefits." name="description"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --primary-blue: #1e5ce6;
+            --dark-blue: #0f172a;
+            --text-gray: #64748b;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--dark-blue); background-color: var(--white); line-height: 1.6; }
+        h1, h2, h3, .nav-logo { font-family: 'Outfit', sans-serif; }
+
+        /* Navbar */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; background: white; position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .nav-logo { font-size: 24px; font-weight: 800; color: var(--primary-blue); text-decoration: none; }
+        .nav-links a { margin-left: 30px; text-decoration: none; color: var(--dark-blue); font-weight: 500; cursor: pointer; }
+        .contact-btn {
+            background: var(--primary-blue); color: white !important;
+            padding: 10px 24px; border-radius: 8px; transition: var(--transition);
+        }
+        .contact-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* Hero */
+        .hero {
+            padding: 80px 8% 40px; text-align: center; background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { font-size: 1.25rem; color: var(--text-gray); max-width: 700px; margin: 0 auto 30px; }
+
+        /* Calculator Section (Now at Top) */
+        #calculator-section { padding: 40px 8%; background: white; }
+        .calc-card {
+            max-width: 600px; margin: 0 auto; background: white; padding: 40px;
+            border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;
+        }
+        .calc-card h2 { margin-bottom: 10px; font-size: 24px; }
+        .calc-card p.subtitle { color: var(--text-gray); margin-bottom: 30px; }
+        
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        input, select {
+            width: 100%; padding: 12px; border: 1.5px solid #e2e8f0; border-radius: 8px;
+            margin-bottom: 20px; font-family: inherit; font-size: 16px;
+        }
+        .btn-next {
+            width: 100%; background: var(--primary-blue); color: white; border: none;
+            padding: 14px; border-radius: 8px; font-weight: 600; cursor: pointer;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); display: none; justify-content: center;
+            align-items: center; z-index: 2000; backdrop-filter: blur(4px);
+        }
+        .modal-content {
+            background: white; padding: 40px; border-radius: 16px; width: 90%;
+            max-width: 500px; position: relative;
+        }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 24px;
+            cursor: pointer; color: var(--text-gray);
+        }
+        .modal-content h3 { margin-bottom: 20px; font-size: 22px; }
+
+        /* FAQ Section */
+        .faq-section { padding: 80px 8%; background: var(--light-bg); }
+        .faq-container { max-width: 800px; margin: 40px auto; }
+        .faq-item {
+            background: white; border-radius: 12px; margin-bottom: 15px;
+            overflow: hidden; border: 1px solid #e2e8f0;
+        }
+        .faq-question {
+            padding: 20px; width: 100%; text-align: left; background: none;
+            border: none; font-weight: 600; font-size: 16px; display: flex;
+            justify-content: space-between; align-items: center; cursor: pointer;
+            color: var(--dark-blue);
+        }
+        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s ease; color: var(--text-gray); }
+        .faq-item.active .faq-answer { padding: 0 20px 20px; max-height: 200px; }
+
+        /* Footer */
+        footer { background: var(--dark-blue); color: white; padding: 60px 8% 30px; }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 40px;
+        }
+        .footer-logo { font-size: 24px; font-weight: 800; margin-bottom: 20px; display: block; }
+        .footer-links h4 { margin-bottom: 20px; color: #94a3b8; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #cbd5e1; text-decoration: none; transition: 0.3s; cursor: pointer; }
+        .footer-links a:hover { color: white; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="nav-logo">Worklo</a>
+    <div class="nav-links">
+        <a onclick="scrollToSection('calculator-section')">Calculator</a>
+        <a onclick="scrollToSection('faq')">FAQ</a>
+        <a onclick="openContactModal()" class="contact-btn">Contact Us</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>We don't just find offices.<br>We upgrade them — Everything on us.</h1>
+    <p>Get up to 2.7% of your annual rent back in AI tools, team experiences, and professional training.</p>
+</section>
+
+<section id="calculator-section">
+    <div class="calc-card">
+        <h2>Unlock Your Worklo Rewards 🎁</h2>
+        <p class="subtitle">Answer 4 quick questions to see your benefits</p>
+        
+        <div id="step-0" class="step active">
+            <label>Your Name (Optional)</label>
+            <input type="text" id="user-name" placeholder="John Doe">
+            <button class="btn-next" onclick="nextStep()">Next</button>
+        </div>
+
+        <div id="step-1" class="step">
+            <label>Current Company Size</label>
+            <select id="company-size">
+                <option value="1-10">1-10 Employees</option>
+                <option value="11-50">11-50 Employees</option>
+                <option value="51-200">51-200 Employees</option>
+                <option value="201+">201+ Employees</option>
+            </select>
+            <button class="btn-next" onclick="nextStep()">Next</button>
+        </div>
+
+        <div id="step-2" class="step">
+            <label>Preferred Location</label>
+            <select id="city">
+                <option value="Bangalore">Bangalore</option>
+                <option value="Gurgaon">Gurgaon</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Pune">Pune</option>
+                <option value="Hyderabad">Hyderabad</option>
+            </select>
+            <button class="btn-next" onclick="nextStep()">Next</button>
+        </div>
+
+        <div id="step-3" class="step">
+            <label>Monthly Office Budget (₹)</label>
+            <input type="number" id="budget" placeholder="e.g. 500000">
+            <button class="btn-next" onclick="showReward()">Calculate My Rewards</button>
+        </div>
+
+        <div id="reward-result" class="step">
+            <h3 style="color: var(--primary-blue); font-size: 28px; margin-bottom: 10px;">Your Reward: <span id="reward-amount">₹0</span></h3>
+            <p id="reward-message" style="font-weight: 600; margin-bottom: 20px;"></p>
+            <div id="reward-images" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;"></div>
+            <button class="btn-next" style="margin-top: 20px;" onclick="openContactModal()">Claim This Reward</button>
+        </div>
+    </div>
+</section>
+
+<div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeContactModal()">&times;</span>
+        <h3>Get in Touch</h3>
+        <form action="https://formspree.io/f/xrerwvjk" method="POST">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your Name">
+            <label>Contact Number (Mandatory)</label>
+            <input type="tel" name="phone" placeholder="9876543210" required>
+            <label>Company</label>
+            <input type="text" name="company" placeholder="Company Name">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="email@company.com">
+            <label>Remarks</label>
+            <input type="text" name="remarks" placeholder="How can we help?">
+            <button type="submit" class="btn-next">Submit Details</button>
+        </form>
+    </div>
+</div>
+
+<section class="faq-section" id="faq">
+    <h2 style="text-align: center;">Frequently Asked Questions</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <button class="faq-question">How is Worklo free for us? <span>+</span></button>
+            <div class="faq-answer"><p>We partner with workspace providers who pay us a standard finders fee. We share a significant portion of that fee back with you as rewards.</p></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Are the rental prices higher if I use Worklo? <span>+</span></button>
+            <div class="faq-answer"><p>No. You get the same (or often better) market rates. The rewards are an added benefit from our side.</p></div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-grid">
+        <div>
+            <span class="footer-logo">Worklo</span>
+            <p style="color: #94a3b8;">Smart office discovery with native workspace benefits across India.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Product</h4>
+            <ul>
+                <li><a onclick="scrollToSection('calculator-section')">Calculator</a></li>
+                <li><a onclick="openContactModal()">Find Office</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>Company</h4>
+            <ul>
+                <li><a onclick="scrollToSection('faq')">About Us</a></li>
+                <li><a onclick="openContactModal()">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>Support</h4>
+            <p style="color: #cbd5e1;">Email: info@worklo.work</p>
+        </div>
+    </div>
+    <div style="border-top: 1px solid #334155; padding-top: 30px; text-align: center; color: #64748b; font-size: 14px;">
+        © 2026 Worklo. All rights reserved.
+    </div>
+</footer>
+
+<script>
+    let currentStep = 0;
+    const steps = document.querySelectorAll('.step');
+
+    function nextStep() {
+        steps[currentStep].classList.remove('active');
+        currentStep++;
+        steps[currentStep].classList.add('active');
+    }
+
+    function showReward() {
+        const budget = parseFloat(document.getElementById('budget').value);
+        if(!budget) { alert("Please enter your budget"); return; }
+
+        const annualRent = budget * 12;
+        const reward = Math.round(annualRent * 0.027);
+        
+        document.getElementById('reward-amount').innerText = "₹" + reward.toLocaleString('en-IN');
+        
+        let msg = "";
+        if(reward <= 20000) msg = "You've unlocked Team Engagement Activities!";
+        else if(reward <= 50000) msg = "You've unlocked Professional Training & Team Building!";
+        else msg = "You've unlocked AI Productivity Tools & Premium Experiences!";
+        
+        document.getElementById('reward-message').innerText = msg;
+        
+        steps[currentStep].classList.remove('active');
+        document.getElementById('reward-result').classList.add('active');
+    }
+
+    // Modal Logic
+    function openContactModal() {
+        document.getElementById('contactModal').style.display = 'flex';
+    }
+    function closeContactModal() {
+        document.getElementById('contactModal').style.display = 'none';
+    }
+
+    // FAQ Logic
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const item = button.parentElement;
+            item.classList.toggle('active');
+            const span = button.querySelector('span');
+            span.innerText = item.classList.contains('active') ? '-' : '+';
+        });
+    });
+
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Close modal on outside click
+    window.onclick = function(event) {
+        let modal = document.getElementById('contactModal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
