@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2WZN82K78Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2WZN82K78Q');
+</script>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Worklo Rewards Calculator — Unlock What Your Office Is Worth</title>
+<meta name="description" content="Find out how much in rewards, AI tools, and team benefits your company unlocks when you find your office through Worklo — at zero cost."/>
+<meta property="og:title" content="Worklo Rewards Calculator 🎁"/>
+<meta property="og:description" content="Answer 2 quick questions and see exactly what your company gets for FREE with Worklo."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --blue:#1e5ce6; --blue-dark:#1448c2; --green:#15803d;
+  --red:#e63946; --black:#0a0a0a; --gray-50:#f9fafb;
+  --gray-200:#e8edf8; --gray-400:#999; --gray-600:#555; --white:#fff;
+  --ff:'DM Sans',sans-serif; --fd:'Outfit',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--ff);background:linear-gradient(135deg,#eef2ff 0%,#e0e9ff 50%,#f0f4ff 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 16px 80px;color:var(--black);}
+
+.hdr{text-align:center;margin-bottom:32px;max-width:600px;width:100%;}
+.logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:22px;}
+.logo-box{width:44px;height:44px;background:linear-gradient(135deg,var(--red),var(--blue));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--fd);font-weight:900;font-size:20px;}
+.logo-txt{font-family:var(--fd);font-size:26px;font-weight:800;}
+.eyebrow{display:inline-block;background:rgba(30,92,230,0.1);border:1px solid rgba(30,92,230,0.25);color:var(--blue);font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:14px;}
+.hdr h1{font-family:var(--fd);font-size:clamp(26px,5vw,42px);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:12px;}
+.hdr h1 em{color:var(--red);font-style:normal;}
+.hdr p{font-size:15px;color:var(--gray-600);line-height:1.7;}
+
+.card{background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(30,92,230,0.13);border:1px solid var(--gray-200);width:100%;max-width:540px;padding:40px;}
+
+.prog-row{display:flex;justify-content:space-between;font-size:13px;color:var(--gray-400);font-weight:500;margin-bottom:8px;}
+.prog-row b{color:var(--blue);}
+.prog-track{height:6px;background:var(--gray-200);border-radius:10px;overflow:hidden;margin-bottom:28px;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--blue),#22c55e);border-radius:10px;transition:width 0.4s cubic-bezier(.4,0,.2,1);}
+
+.step{display:none;}
+.step.on{display:block;animation:fadeIn 0.25s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.sq{font-family:var(--fd);font-size:19px;font-weight:700;margin-bottom:4px;}
+.sh{font-size:13px;color:var(--gray-400);margin-bottom:18px;}
+
+/* Quick-pick chips for team size */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.chip{padding:9px 18px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:14px;font-weight:600;background:var(--gray-50);cursor:pointer;transition:all 0.15s;color:var(--gray-600);}
+.chip:hover,.chip.sel{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+input[type=text],input[type=tel],input[type=number]{display:block;width:100%;padding:13px 16px;border:1.5px solid var(--gray-200);border-radius:10px;font-size:15px;font-family:var(--ff);color:var(--black);background:var(--gray-50);outline:none;transition:border-color 0.2s,box-shadow 0.2s;margin-bottom:14px;}
+input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(30,92,230,0.1);background:#fff;}
+
+.btn-blue{display:block;width:100%;padding:14px;background:linear-gradient(135deg,var(--blue),var(--blue-dark));color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;font-family:var(--ff);cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;box-shadow:0 4px 16px rgba(30,92,230,0.3);}
+.btn-blue:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(30,92,230,0.38);}
+.btn-blue:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+.btn-back{background:none;border:none;color:var(--gray-400);font-size:13px;font-weight:600;font-family:var(--ff);cursor:pointer;padding:8px 0;margin-top:6px;display:block;transition:color 0.2s;}
+.btn-back:hover{color:var(--blue);}
+.err{font-size:12px;color:var(--red);margin:-10px 0 12px;display:none;}
+
+/* Result */
+#result{display:none;}
+.res-top{text-align:center;padding-bottom:24px;border-bottom:1px solid var(--gray-200);margin-bottom:24px;}
+.res-lbl{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--gray-400);margin-bottom:8px;}
+
+/* Animated counter */
+.res-amt{font-family:var(--fd);font-size:clamp(52px,14vw,72px);font-weight:900;color:var(--blue);letter-spacing:-2px;line-height:1;margin-bottom:10px;}
+.res-desc{font-size:14px;color:var(--gray-600);line-height:1.65;max-width:380px;margin:0 auto;}
+
+/* Reward breakdown */
+.breakdown{background:var(--gray-50);border-radius:12px;padding:16px 18px;margin-bottom:20px;}
+.breakdown-ttl{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray-400);margin-bottom:12px;}
+.breakdown-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:5px 0;border-bottom:1px solid var(--gray-200);}
+.breakdown-row:last-child{border-bottom:none;font-weight:700;color:var(--blue);font-size:14px;padding-top:10px;}
+.breakdown-icon{width:24px;text-align:center;margin-right:6px;}
+
+/* Claim gate — shown after result */
+.claim-gate{background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border:1px solid rgba(30,92,230,0.2);border-radius:14px;padding:22px;margin-bottom:16px;}
+.claim-ttl{font-family:var(--fd);font-size:17px;font-weight:700;margin-bottom:3px;}
+.claim-sub{font-size:13px;color:var(--gray-600);margin-bottom:18px;line-height:1.5;}
+
+.success-box{display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px;font-size:14px;color:#15803d;font-weight:600;text-align:center;margin-bottom:14px;}
+
+.btn-green{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;background:linear-gradient(135deg,#15803d,#16a34a);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;font-family:var(--ff);cursor:pointer;text-decoration:none;box-shadow:0 4px 16px rgba(21,128,61,0.32);transition:transform 0.15s,box-shadow 0.15s;margin-top:10px;}
+.btn-green:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(21,128,61,0.4);}
+.btn-outline{display:block;width:100%;padding:12px;background:#fff;color:var(--blue);border:1.5px solid var(--blue);border-radius:10px;font-size:14px;font-weight:600;font-family:var(--ff);cursor:pointer;margin-top:10px;transition:background 0.2s;}
+.btn-outline:hover{background:#f0f4ff;}
+
+.spinner{display:none;width:18px;height:18px;border:2px solid rgba(255,255,255,0.35);border-top-color:#fff;border-radius:50%;animation:sp 0.7s linear infinite;margin:0 auto;}
+@keyframes sp{to{transform:rotate(360deg);}}
+
+/* Privacy micro-copy */
+.privacy{font-size:11px;color:var(--gray-400);text-align:center;margin-top:8px;line-height:1.5;}
+
+.trust{margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+.trust span{font-size:12px;color:var(--gray-400);font-weight:500;}
+.foot{margin-top:40px;text-align:center;font-size:13px;color:var(--gray-400);}
+.foot a{color:var(--blue);text-decoration:none;font-weight:600;}
+
+/* Big WhatsApp CTA */
+.wa-cta-wrap{margin-bottom:14px;}
+.wa-cta-pre{font-size:13px;color:#b45309;font-weight:600;text-align:center;margin-bottom:12px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 12px;}
+.btn-wa-big{display:flex;align-items:center;gap:14px;width:100%;padding:18px 20px;background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;border:none;border-radius:14px;font-family:var(--ff);cursor:pointer;text-decoration:none;box-shadow:0 6px 24px rgba(21,128,61,0.4);transition:transform 0.15s,box-shadow 0.15s;position:relative;overflow:hidden;}
+.btn-wa-big::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.08),transparent);pointer-events:none;}
+.btn-wa-big:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(21,128,61,0.5);}
+@keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(21,128,61,0.5);}70%{box-shadow:0 0 0 14px rgba(21,128,61,0);}100%{box-shadow:0 0 0 0 rgba(21,128,61,0);}}
+.btn-wa-big{animation:pulse-ring 2s ease-out infinite;}
+.wa-icon{flex-shrink:0;width:40px;height:40px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.wa-btn-text{flex:1;text-align:left;}
+.wa-btn-main{display:block;font-size:17px;font-weight:800;font-family:var(--fd);letter-spacing:-0.3px;line-height:1.2;}
+.wa-btn-sub{display:block;font-size:12px;opacity:0.85;margin-top:3px;font-weight:500;}
+.wa-arrow{font-size:22px;font-weight:700;flex-shrink:0;opacity:0.8;}
+.wa-cta-post{font-size:11px;color:var(--gray-400);text-align:center;margin-top:8px;}
+
+@media(max-width:480px){.card{padding:28px 20px 32px;}body{padding:24px 12px 60px;}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="logo-row">
+    <div class="logo-box">W</div>
+    <span class="logo-txt">Worklo</span>
+  </div>
+  <div class="eyebrow">🎁 Exclusive Rewards Calculator</div>
+  <h1>Unlock What Your Office<br/><em>Is Actually Worth</em></h1>
+  <p>Answer <strong>2 quick questions</strong> — see exactly how much in rewards, AI tools &amp; team benefits your company gets at <strong>zero cost</strong>.</p>
+</div>
+
+<div class="card">
+
+  <div id="prog-wrap">
+    <div class="prog-row"><span id="step-lbl">Step 1 of 2</span><b id="step-pct">50%</b></div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:50%"></div></div>
+  </div>
+
+  <!-- Step 1: Team size -->
+  <div class="step on" id="step-1">
+    <div class="sq">👥 How many people in your team?</div>
+    <div class="sh">Total headcount including yourself</div>
+    <div class="chips">
+      <div class="chip" onclick="pickChip(this,'f-people','5')">1–5</div>
+      <div class="chip" onclick="pickChip(this,'f-people','15')">6–20</div>
+      <div class="chip" onclick="pickChip(this,'f-people','40')">21–50</div>
+      <div class="chip" onclick="pickChip(this,'f-people','75')">51–100</div>
+      <div class="chip" onclick="pickChip(this,'f-people','150')">100+</div>
+    </div>
+    <input type="number" id="f-people" placeholder="Or type exact number" min="1"/>
+    <div class="err" id="err-people">Please enter your team size</div>
+    <button class="btn-blue" onclick="goStep(2)">Next →</button>
+  </div>
+
+  <!-- Step 2: Budget -->
+  <div class="step" id="step-2">
+    <div class="sq">💰 Monthly budget per seat (₹)?</div>
+    <div class="sh">Approximate ₹ per person per month</div>
+    <div class="chips">
+      <div class="chip" onclick="pickChip(this,'f-budget','4000')">₹2k–5k</div>
+      <div class="chip" onclick="pickChip(this,'f-budget','7000')">₹5k–10k</div>
+      <div class="chip" onclick="pickChip(this,'f-budget','15000')">₹10k–20k</div>
+      <div class="chip" onclick="pickChip(this,'f-budget','25000')">₹20k+</div>
+    </div>
+    <input type="number" id="f-budget" placeholder="Or type exact amount" min="500"/>
+    <div class="err" id="err-budget">Please enter your monthly budget</div>
+    <button class="btn-blue" onclick="doCalculate()">🎁 Show My Rewards</button>
+    <button class="btn-back" onclick="goStep(1)">← Back</button>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result">
+    <div class="res-top">
+      <div class="res-lbl">Your Worklo Rewards Estimate</div>
+      <div class="res-amt" id="res-amt">₹0</div>
+      <div class="res-desc" id="res-desc"></div>
+    </div>
+
+    <!-- Breakdown -->
+    <div class="breakdown" id="breakdown-box">
+      <div class="breakdown-ttl">What's included</div>
+      <div class="breakdown-row"><span><span class="breakdown-icon">🤖</span>AI Tools & Subscriptions</span><span id="bd-ai">₹0</span></div>
+      <div class="breakdown-row"><span><span class="breakdown-icon">📚</span>Team Training Credits</span><span id="bd-train">₹0</span></div>
+      <div class="breakdown-row"><span><span class="breakdown-icon">🎉</span>Team Experience Budget</span><span id="bd-exp">₹0</span></div>
+      <div class="breakdown-row"><span><span class="breakdown-icon">🏆</span>Total Rewards</span><span id="bd-total">₹0</span></div>
+    </div>
+
+    <!-- Single Big WA CTA -->
+    <div class="wa-cta-wrap">
+      <p class="wa-cta-pre">Your rewards are reserved for <strong>48 hours</strong> — don't let them expire!</p>
+      <a id="wa-link" href="#" target="_blank" rel="noopener" class="btn-wa-big">
+        <span class="wa-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </span>
+        <span class="wa-btn-text">
+          <span class="wa-btn-main">Tap to Claim on WhatsApp</span>
+          <span class="wa-btn-sub">Free · No broker fees · Reply in minutes</span>
+        </span>
+        <span class="wa-arrow">→</span>
+      </a>
+      <p class="wa-cta-post">🔒 Opens WhatsApp — we'll send your full rewards package instantly</p>
+    </div>
+
+    <button class="btn-outline" onclick="doRestart()">← Calculate Again</button>
+  </div>
+
+</div>
+
+<div class="trust">
+  <span>🔒 100% Free — No Broker Fees</span>
+  <span>⚡ Response Within 24 Hours</span>
+  <span>🏢 Pan-India Coverage</span>
+</div>
+
+<div class="foot">
+  Powered by <a href="https://worklo.com" target="_blank">Worklo</a>
+  &nbsp;·&nbsp;
+  <a href="https://worklo.com" target="_blank">Find Your Perfect Office →</a>
+</div>
+
+<script>
+var FORMSPREE = 'https://formspree.io/f/xrerwvjk';
+var WA_NUM    = '919627036092';
+var step      = 1;
+var reward    = 0;
+
+function eid(x){ return document.getElementById(x); }
+function show(x){ eid(x).style.display='block'; }
+function hide(x){ eid(x).style.display='none'; }
+
+function pickChip(el, fieldId, val){
+  // Deselect siblings
+  el.closest('.chips').querySelectorAll('.chip').forEach(function(c){ c.classList.remove('sel'); });
+  el.classList.add('sel');
+  eid(fieldId).value = val;
+}
+
+function setProgress(n){
+  var pct = Math.round(n/2*100);
+  eid('prog-fill').style.width = pct+'%';
+  eid('step-lbl').textContent  = 'Step '+n+' of 2';
+  eid('step-pct').textContent  = pct+'%';
+}
+
+function goStep(n){
+  if(n > step){
+    if(step===1){
+      if(!eid('f-people').value.trim()){ show('err-people'); return; }
+      hide('err-people');
+    }
+  }
+  eid('step-'+step).classList.remove('on');
+  step = n;
+  eid('step-'+step).classList.add('on');
+  setProgress(step);
+}
+
+function animateCounter(el, target){
+  var start = 0;
+  var duration = 900;
+  var startTime = null;
+  function easeOut(t){ return 1 - Math.pow(1-t, 3); }
+  function step(ts){
+    if(!startTime) startTime = ts;
+    var progress = Math.min((ts - startTime) / duration, 1);
+    var val = Math.round(easeOut(progress) * target);
+    el.textContent = '₹' + val.toLocaleString('en-IN');
+    if(progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function doCalculate(){
+  var bud = parseFloat(eid('f-budget').value);
+  if(!bud || bud < 1){ show('err-budget'); return; }
+  hide('err-budget');
+
+  var ppl = parseInt(eid('f-people').value)||10;
+  reward  = Math.round(bud * ppl * 12 * 0.027);
+
+  // Breakdown (rough split)
+  var ai     = Math.round(reward * 0.45);
+  var train  = Math.round(reward * 0.30);
+  var exp    = reward - ai - train;
+
+  eid('bd-ai').textContent    = '₹' + ai.toLocaleString('en-IN');
+  eid('bd-train').textContent = '₹' + train.toLocaleString('en-IN');
+  eid('bd-exp').textContent   = '₹' + exp.toLocaleString('en-IN');
+  eid('bd-total').textContent = '₹' + reward.toLocaleString('en-IN');
+
+  // Animated counter
+  hide('prog-wrap');
+  for(var i=1;i<=2;i++) eid('step-'+i).classList.remove('on');
+  eid('result').style.display = 'block';
+  animateCounter(eid('res-amt'), reward);
+
+  // Description
+  var desc;
+  if(reward <= 50000)        desc = 'Unlock AI subscriptions & productivity tools for your whole team — at zero cost.';
+  else if(reward <= 150000)  desc = 'Choose from AI tools, team experiences & professional training credits.';
+  else                       desc = 'Full suite — AI tools, team off-sites, leadership training & more.';
+  eid('res-desc').textContent = desc;
+
+  // Build WhatsApp link with reward baked in
+  var waMsg = encodeURIComponent(
+    'Hi Worklo! \uD83D\uDC4B I just checked my rewards — my team of ' + ppl
+    + ' unlocks \u20B9' + reward.toLocaleString('en-IN')
+    + ' in rewards. Can you help me claim this and find the right office?'
+  );
+  eid('wa-link').href = 'https://wa.me/919036948723?text=' + waMsg;
+
+  if(typeof gtag!=='undefined'){
+    gtag('event','calculator_result',{reward_amount:reward,people:ppl,budget:bud});
+  }
+}
+
+function submitClaim(){
+  var nm = eid('r-name').value.trim();
+  var ph = eid('r-phone').value.trim();
+  var co = eid('r-company').value.trim();
+
+  if(!nm || !/^\d{10}$/.test(ph)){ show('err-claim'); return; }
+  hide('err-claim');
+
+  eid('claim-txt').style.display  = 'none';
+  eid('claim-spin').style.display = 'block';
+  eid('claim-btn').disabled = true;
+
+  fetch(FORMSPREE, {
+    method  : 'POST',
+    headers : {'Content-Type':'application/json','Accept':'application/json'},
+    body    : JSON.stringify({
+      _subject         : '\uD83C\uDF81 New Worklo Lead \u2014 '+nm+' | \u20B9'+reward.toLocaleString('en-IN'),
+      source           : 'Worklo Calculator Page',
+      name             : nm,
+      phone            : ph,
+      company          : co||'\u2014',
+      team_size        : eid('f-people').value,
+      budget_per_seat  : '\u20B9'+eid('f-budget').value,
+      estimated_reward : '\u20B9'+reward.toLocaleString('en-IN'),
+      page_url         : window.location.href
+    })
+  })
+  .then(function(r){
+    if(r.ok){
+      show('success-box');
+      hide('claim-form');
+      if(typeof gtag!=='undefined') gtag('event','lead_submitted',{name:nm,reward:reward});
+    } else {
+      return r.json().then(function(b){ throw new Error(b.error||('HTTP '+r.status)); });
+    }
+  })
+  .catch(function(e){
+    console.error('Formspree error:',e);
+    eid('claim-txt').style.display  = 'block';
+    eid('claim-spin').style.display = 'none';
+    eid('claim-btn').disabled = false;
+    show('err-claim');
+    eid('err-claim').textContent = 'Submission failed: '+e.message+'. Please use the WhatsApp button below.';
+  });
+}
+
+function doRestart(){
+  step=1; reward=0;
+  ['f-people','f-budget','r-name','r-phone','r-company'].forEach(function(x){
+    var el=eid(x); if(el) el.value='';
+  });
+  // Clear chip selections
+  document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('sel'); });
+  eid('result').style.display    = 'none';
+  show('prog-wrap');
+  show('claim-form');
+  eid('success-box').style.display = 'none';
+  eid('claim-btn').disabled        = false;
+  eid('claim-txt').style.display   = 'block';
+  eid('claim-spin').style.display  = 'none';
+  eid('err-claim').style.display   = 'none';
+  eid('err-claim').textContent     = 'Please enter your name and a valid 10-digit WhatsApp number';
+  eid('step-1').classList.add('on');
+  setProgress(1);
+}
+
+setProgress(1);
+</script>
+</body>
+</html>
